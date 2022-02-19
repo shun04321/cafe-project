@@ -1,0 +1,36 @@
+@CHARSET "utf-8";
+
+	body {
+		font-size: 12px;
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif; 
+	}
+	
+	table{
+		font-size: 12px;
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif;
+	}
+	
+	.label{
+		background:#C4C8CC;
+		height:30;
+		width:100px;
+	}
+	
+	.input {
+		width:20%;
+		height:20px;;
+		border:1px solid #C4C8CC;
+		padding-top:6px; 
+		font-size: 12px;
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif; 
+	}
+	
+	.textarea{
+		width:99%;
+		height:300px;;
+		border:1px solid #C4C8CC;
+		padding-top:6px; 
+		font-size: 12px;
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif; 
+		letter-spacing: -0.3px;
+	}
