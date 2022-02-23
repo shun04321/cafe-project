@@ -232,12 +232,18 @@
 			<!--  글 제목 출력 -->
 			<td width="450">
 				&nbsp&nbsp&nbsp<%=strRE%> 
-				<a href="pass.jsp?num=<%=rs.getInt("qa_id")%>" target="_self" style="text-decoration:none; color: #6d6d6d;"><%=rs.getString("qa_title")%></a>
+				<a href="pass_ok.jsp?num=<%=rs.getInt("qa_id")%>" target="_self" style="text-decoration:none; color: #6d6d6d;"><%=rs.getString("qa_title")%></a>
 				&nbsp<input type="image" src="img/ico_lock.jpg">
 			</td>
 <%
 			String name = rs.getString("user_id");
-			name = name.replaceAll("(?<=.{1})." , "*");
+			if("admin".equals(name))	{
+				name = name.replace("admin" , " ");
+			}
+			else {
+				name = name.replaceAll("(?<=.{1})." , "*");
+			}
+
 %>
 			<td width="100" align="center"><%= name %></td>
 			<td width="100" align="center"><%= rs.getString("qa_date").substring(0,10) %></td>
@@ -288,7 +294,7 @@
 		}else{
 %>
 		<a href="javascript:goPageMove('1')"><img src="img/btn_first.gif" border="0" alt="처음으로"></a>
-		<a href="javascript:goPageMove('<%= tmpNum - nPageBlockSize%>')"><img src="img/btn_prev.gif" border="0" alt="이전으로"></a>
+		<a href="javascript:goPageMove('<%= nPageNum - 1%>')"><img src="img/btn_prev.gif" border="0" alt="이전으로"></a>
 <%		
 		}
 		

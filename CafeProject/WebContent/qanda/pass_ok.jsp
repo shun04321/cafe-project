@@ -9,7 +9,7 @@
 	 String jdbc_url = "jdbc:mysql://mydbinstance.ctvgpvyuejsa.ap-northeast-2.rds.amazonaws.com:3306/myShoppingmallDB?serverTimezone=UTC";
 		
 	 //파라미터
-	 String pass = request.getParameter("password");
+	 String pass = String.valueOf(session.getAttribute("password"));
 	 String qa_id = request.getParameter("num"); 		//null
 	 String qa_password = null;
 	 
@@ -33,7 +33,7 @@
 		   	System.out.println(qa_password);
 		}
 		  
-		if(qa_password.equals(pass) || "rhksflwk".equals(pass)){		// 작성자 or 관리자 비밀번호
+		if(qa_password.equals(pass) || "adminpw12!".equals(pass)){		// 작성자 or 관리자 비밀번호
 %>
 	 	<script type="text/javascript">
 	 		self.location.href="view.jsp?num=<%=qa_id%>";
@@ -46,7 +46,7 @@
 		} else{
 %>
 		<script type="text/javascript">
-			self.window.alert("비밀글 비밀번호가 틀립니다.");
+			self.window.alert("다른 회원의 글을 볼 수 없습니다.");
 		  	location.href="pass.jsp";
 		</script>
 <%

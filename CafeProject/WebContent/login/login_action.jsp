@@ -33,11 +33,21 @@
 		userPassword = (String) request.getParameter("password");
 	
 	}
+	
 	UserDAO userDAO = new UserDAO();
 	int result = userDAO.login(userID, userPassword); // userDAO객체의 login메소드에서 리턴된 값
 	
-	if(result == 1){
+	if(result == 1){ //관리자 페이지
 		session.setAttribute("id", userID);
+		session.setAttribute("password", userPassword);
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인 성공')");
+		script.println("location.href='./../admin/admin_index.jsp'");
+		script.println("</script>");
+	}else if(result == 2){ // 사용자페이지
+		session.setAttribute("id", userID);
+		session.setAttribute("password", userPassword);
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인 성공')");

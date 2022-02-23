@@ -1,6 +1,7 @@
 <!-- 이시윤 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8"); %>
 <%
 	 //NULL값 체크 후 처리
 	 String qa_id = request.getParameter("num");
