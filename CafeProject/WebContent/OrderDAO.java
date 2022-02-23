@@ -54,7 +54,7 @@ public class OrderDAO {
 	// 주문번호(order_id) 부여 메소드
 	public int getNext() {
 		//현재 리뷰 게시판을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다
-		String sql = "select order_id from order order by order_id desc";
+		String sql = "select order_id from orders order by order_id desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -97,7 +97,7 @@ public class OrderDAO {
 			Class.forName(jdbc_driver);
 			conn = DriverManager.getConnection(jdbc_url, id, pw);
 
-			String sql = "insert into order values(?, ?, ?)";
+			String sql = "insert into orders values(?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			int orderId = getNext();
