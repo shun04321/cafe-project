@@ -124,7 +124,7 @@ public class OrderDAO {
 			Class.forName(jdbc_driver);
 			conn = DriverManager.getConnection(jdbc_url, id, pw);
 
-			String sql = "select count(*) from order_detail where user_id= ? and write_review=0;";
+			String sql = "select count(*) from order_detail where order_user_user_id= ? and write_review=0;";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, userId);
@@ -148,7 +148,7 @@ public class OrderDAO {
 			Class.forName(jdbc_driver);
 			conn = DriverManager.getConnection(jdbc_url, id, pw);
 
-			String sql = "select * from order_detail where user_id= ? and write_review=0;";
+			String sql = "select * from order_detail where order_user_user_id= ? and write_review=0;";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, userId);
@@ -161,9 +161,9 @@ public class OrderDAO {
 				OrderDetailDTO detail = new OrderDetailDTO();
 				
 				detail.setDetailNUM(rs.getInt("detail_num"));
-				detail.setUserID(rs.getString("user_id"));
-				detail.setOrderID(rs.getInt("order_id"));
-				detail.setProductID(rs.getInt("product_id"));
+				detail.setUserID(rs.getString("order_user_user_id"));
+				detail.setOrderID(rs.getInt("order_order_id"));
+				detail.setProductID(rs.getInt("product_product_id"));
 				detail.setWriteREVIEW(rs.getInt("write_review"));
 				list.add(detail);
 			}		
@@ -180,7 +180,7 @@ public class OrderDAO {
 			Class.forName(jdbc_driver);
 			conn = DriverManager.getConnection(jdbc_url, id, pw);
 
-			String sql = "select * from product as p join order_detail as d on p.product_id=d.product_id where p.product_id=?;";
+			String sql = "select * from product as p join order_detail as d on p.product_id=d.product_product_id where p.product_id=?;";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, productId);
@@ -206,10 +206,10 @@ public class OrderDAO {
 			Class.forName(jdbc_driver);
 			conn = DriverManager.getConnection(jdbc_url, id, pw);
 
-			String sql = "select min(order_id) \r\n"
+			String sql = "select min(order_order_id) \r\n"
 					+ "from `order_detail` \r\n"
-					+ "where user_id = ? and write_review=0 and product_id=?\r\n"
-					+ "group by user_id;";
+					+ "where order_user_user_id = ? and write_review=0 and product_product_id=?\r\n"
+					+ "group by order_user_user_id;";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -230,5 +230,6 @@ public class OrderDAO {
 		return -1;
 	}
 }
+
 
 
