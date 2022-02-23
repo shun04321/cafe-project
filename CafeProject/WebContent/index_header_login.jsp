@@ -18,7 +18,7 @@
 
 	<div class="logo-box">
 		<span class="welcom-id"><%=session.getAttribute("id") %>님 안녕하세요</span>
-		<a class="mypage" href="./../mypage2/list.jsp">MY PAGE</a>		<!-- 수정한 부분 -->
+		<a class="mypage" href="./../mypage/list.jsp">MY PAGE</a>		<!-- 수정한 부분 -->
 	</div>
 </body>
 </html>
