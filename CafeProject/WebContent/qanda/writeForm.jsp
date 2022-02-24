@@ -175,10 +175,10 @@
 			<textarea name="content" class="textarea"></textarea>
 			</td>
 		</tr>
-		<tr>
+		<tr class="hidden">
 			<td width="80" class="label" align="center" bgcolor="#C4C8CC"><font color="#ffffff"><b>PASSWORD</b></font></td>
 			<td width="800" style="border:0px solid;">
-			&nbsp&nbsp&nbsp&nbsp<input type="password" name="password" class="input" style="vertical-align:middle;">
+			&nbsp&nbsp&nbsp&nbsp<input type="password" name="password" class="input" style="vertical-align:middle;" value="<%=session.getAttribute("password") %>">
 			</td>
 		</tr>
 		<tr>
