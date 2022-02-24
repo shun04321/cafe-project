@@ -1,9 +1,6 @@
 package com.project.dao;
 
 import java.sql.*;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import com.project.dto.*;
 
@@ -73,18 +70,25 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				if(rs.getString(1).equals(user_pwd)) return 1; //로그인 성공
+				if(user_id.equals("admin") && rs.getString(1).equals(user_pwd)) return 1; //관리자 로그인 성공 
+				else if(rs.getString(1).equals(user_pwd)) return 2; //사용자 로그인 성공
 				else return 0; //비밀번호 불일치
 			}
 			return -1; //존재하지 않는 아이디
 		}catch (Exception e) {
 			System.out.println(e);// TODO: handle exception
+		}finally{
+			try{
+				pstmt.close();
+			}catch(Exception ignored){}
+			try{
+				conn.close();
+			}catch(Exception ignored){}
 		}
 		return -2; //데이터 베이스 오류
 	}
 	
 	public boolean resign(String user_id, String user_pwd) {
-		
 		String sql = "DELETE FROM user WHERE user_id = ?";
 		
 		try {
@@ -101,6 +105,13 @@ public class UserDAO {
 			}
 		}catch (Exception e) {
 			System.out.println(e);// TODO: handle exception
+		}finally{
+			try{
+				pstmt.close();
+			}catch(Exception ignored){}
+			try{
+				conn.close();
+			}catch(Exception ignored){}
 		}
 		return false;
 	}
