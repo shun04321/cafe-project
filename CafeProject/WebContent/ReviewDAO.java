@@ -108,7 +108,7 @@ public class ReviewDAO {
 			Class.forName(jdbc_driver);
 			conn = DriverManager.getConnection(jdbc_url, id, pw);
 
-			String sql = "select review_id, product_name, grade, user_id, review_date from review as r join product as p where r.product_id=p.product_id order by review_id desc limit ? offset ?;";
+			String sql = "select review_id, product_name, grade, user_id, review_date from review as r join product as p where r.review_product_id=p.product_id order by review_id desc limit ? offset ?;";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, nSizePerPage);
@@ -140,7 +140,7 @@ public class ReviewDAO {
 			Class.forName(jdbc_driver);
 			conn = DriverManager.getConnection(jdbc_url, id, pw);
 
-			String sql = "select review_id, product_name, grade, review_content, user_id, review_date from review as r join product as p where r.product_id=p.product_id and review_id =?;";
+			String sql = "select review_id, product_name, grade, review_content, user_id, review_date from review as r join product as p where r.review_product_id=p.product_id and review_id =?;";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, reviewID);

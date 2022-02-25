@@ -22,6 +22,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" href="./css/qanda.css" rel="stylesheet" />
 <title><%=strProgramTitle %></title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+		$(document).ready(function(e){
+			genRowspan("first");
+		});
+
+		function genRowspan(className){
+			$("." + className).each(function() {
+				var rows = $("." + className + ":contains('" + $(this).text() + "')");
+				if (rows.length > 1) {
+					rows.eq(0).attr("rowspan", rows.length);
+					rows.not(":eq(0)").remove();
+				}
+			});
+		}
+</script>
 <style>  
 	h2 {
 	    font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif;
@@ -231,12 +247,15 @@
 			strQuery += " 	,detail_num						\n";
 			strQuery += " 	,write_review					\n";
 			strQuery += " 	,product_id						\n";
+			strQuery += " 	,review_id						\n";
 			strQuery += " 	FROM 							\n";
 			strQuery += " 	order_detail 					\n";
 			strQuery += " 	LEFT JOIN orders  				\n";
 			strQuery += " 	ON order_order_id = order_id  	\n";
 			strQuery += " 	JOIN product  					\n";
 			strQuery += " 	ON product_product_id = product_id 	\n";
+			strQuery += " 	LEFT JOIN review  					\n";
+			strQuery += " 	ON product_product_id = review_product_id AND order_order_id = review_order_id	\n";
 			strQuery += " 	WHERE 							\n";
 			strQuery += " 	order_user_user_id='" + String.valueOf(session.getAttribute("id"))	+ "'\n";
 			strQuery += " 	ORDER BY order_date DESC  		\n";
@@ -255,7 +274,7 @@
 		<tr border-bottom="1px solid #6d6d6d">
 			<!--  글 번호 idx 출력 -->
 			<!-- <td width="50" height="25" align="center"><%= idx %></td> -->
-			<td width="130" height="75" align="center">[<%=rs.getInt("order_id")%>]<br>
+			<td class="first" style="border: 1px solid #eeeeee" width="130" height="75" align="center">[<%=rs.getInt("order_id")%>]<br>
 			<%= rs.getString("order_date").substring(0,10)%></td>
 			<td width="390" height="75" align="center">
 			<a href="./../product/menu_detail.jsp?product_id=<%=rs.getInt("product_id")%>" target="_self" style="text-decoration:none; color: #6d6d6d;"><%=rs.getString("product_name")%></a>
@@ -268,7 +287,7 @@
 			%><a class="write" href="./../index/index.jsp?contentPage=./../review/chooseProduct.jsp">후기쓰기</a>
 			<%
 			}else if(rs.getInt("write_review") == 1){
- 			%><a class="view" href="./../index/index.jsp?contentPage=./../review/review/viewReview.jsp?reviewId=3">후기보기</a>
+ 			%><a class="view" href="./../index/index.jsp?contentPage=./../review/viewReview.jsp?reviewId=<%=rs.getInt("review_id")%>">후기보기</a>
 			<%} %>
 			</td>
 		</tr>
