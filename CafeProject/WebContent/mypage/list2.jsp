@@ -3,6 +3,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="com.project.dto.*"%>
+<%@ page import="com.project.dao.*"%>
 <!-- 공통파일 INCLUDE -->    
 <%@ include file="global2.jsp" %>  
 <%request.setCharacterEncoding("UTF-8"); %>
@@ -67,7 +69,7 @@
 	    box-sizing: border-box;
 	    padding: 0 11px;
 	    border: 1px solid transparent;
-	    font-size: 13px;
+	    font-size: 10px;
 	    font-weight: 300;
 	    text-decoration: none;
 	    vertical-align: middle;
@@ -77,12 +79,37 @@
 	    transition: 0.2s ease-in-out;
 	    color: #ffffff;
 	    background-color: #222222;
-	    height: 40px;
-	    line-height: 40px;
+	    height: 30px;
+	    line-height: 30px;
 	    word-break: keep-all;
 	    word-wrap: break-word;
-	    margin-left: 6px;
-	    width: 100px;
+	    margin-left: 3px;
+	    width: 65px;
+	}
+	
+	a.view {
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif;
+	    cursor: pointer;
+	    display: inline-block;
+	    box-sizing: border-box;
+	    padding: 0 11px;
+	    font-size: 10px;
+	    font-weight: 300;
+	    text-decoration: none;
+	    vertical-align: middle;
+	    letter-spacing: -0.3px;
+	    color: #4e4c4a;
+	    text-align: center;
+	    white-space: nowrap;
+	    transition: 0.2s ease-in-out;
+	    background-color: transparent;
+	    border: 1px solid #eeeeee;
+	    height: 30px;
+	    line-height: 30px;
+	    word-break: keep-all;
+	    word-wrap: break-word;
+	    margin-left: 3px;
+	    width: 65px;
 	}
 	
 	a.main {
@@ -203,6 +230,7 @@
 			strQuery += " 	,product_price					\n";
 			strQuery += " 	,detail_num						\n";
 			strQuery += " 	,write_review					\n";
+			strQuery += " 	,product_id						\n";
 			strQuery += " 	FROM 							\n";
 			strQuery += " 	order_detail 					\n";
 			strQuery += " 	LEFT JOIN orders  				\n";
@@ -223,17 +251,26 @@
 			int idx = nTotalRecord - nFirstNcno;									//화면에 출력할 게시물 번호
 				
 			while(rs.next()){														//rs.next가 true면 게시물 리스트 출력
-				
-%>
+%> 
 		<tr border-bottom="1px solid #6d6d6d">
 			<!--  글 번호 idx 출력 -->
 			<!-- <td width="50" height="25" align="center"><%= idx %></td> -->
 			<td width="130" height="75" align="center">[<%=rs.getInt("order_id")%>]<br>
 			<%= rs.getString("order_date").substring(0,10)%></td>
-			<td width="390" height="75" align="center"><%= rs.getString("product_name") %></td>
+			<td width="390" height="75" align="center">
+			<a href="./../product/menu_detail.jsp?product_id=<%=rs.getInt("product_id")%>" target="_self" style="text-decoration:none; color: #6d6d6d;"><%=rs.getString("product_name")%></a>
+			</td>
 			<td width="70" height="75" align="center"><%= rs.getInt("detail_num") %></td>
 			<td width="70" height="75" align="center"><%= rs.getInt("product_price") * rs.getInt("detail_num")%>원</td>
-			<td width="100" height="75" align="center"><%= rs.getInt("write_review") %></td>
+			<td width="100" height="75" align="center">
+			<%
+			if(rs.getInt("write_review") == 0){
+			%><a class="write" href="./../index/index.jsp?contentPage=./../review/chooseProduct.jsp">후기쓰기</a>
+			<%
+			}else if(rs.getInt("write_review") == 1){
+ 			%><a class="view" href="./../index/index.jsp?contentPage=./../review/review/viewReview.jsp?reviewId=3">후기보기</a>
+			<%} %>
+			</td>
 		</tr>
 <%
 				idx--;																//화면출력 번호 1씩 감소	
