@@ -88,7 +88,7 @@ public class ReviewDAO {
 			Class.forName(jdbc_driver);
 			conn = DriverManager.getConnection(jdbc_url, id, pw);
 
-			String sql = "update order_detail set write_review=1 where order_id = ? and user_user_id = ? and product_id = ?;";
+			String sql = "update order_detail set write_review=1 where order_order_id = ? and order_user_user_id = ? and product_product_id = ?;";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, orderID);

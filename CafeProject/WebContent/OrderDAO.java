@@ -97,7 +97,7 @@ public class OrderDAO {
 			Class.forName(jdbc_driver);
 			conn = DriverManager.getConnection(jdbc_url, id, pw);
 
-			String sql = "insert into orders values(?, ?, ?)";
+			String sql = "insert into order values(?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			int orderId = getNext();
@@ -230,6 +230,7 @@ public class OrderDAO {
 		return -1;
 	}
 }
+
 
 
 
