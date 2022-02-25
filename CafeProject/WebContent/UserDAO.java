@@ -141,4 +141,70 @@ public class UserDAO {
 		  }
 		  return rst;
 	}
+	
+	public void UserModify(UserDTO user) { // 회원정보 수정
+		
+		String sql = "update user set user_pwd=?, user_name=?, user_address=?, user_phonenum=?, user_email=? where user_id=?";
+		
+		try {
+			Class.forName(jdbc_driver);
+			conn = DriverManager.getConnection(jdbc_url, id, pw);
+		
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, user.getUserPW());
+			pstmt.setString(2, user.getUserName());
+			pstmt.setString(3, user.getUser_address());
+			pstmt.setString(4, user.getUser_phone());
+			pstmt.setString(5, user.getUser_email());
+			pstmt.setString(6, user.getUserID());
+			
+			int update = pstmt.executeUpdate();
+			
+			if(update == 0) System.out.println("DB 업데이트 실패");
+			else System.out.println("DB 업데이트 성공");
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}finally{
+			try{
+				pstmt.close();
+			}catch(Exception ignored){}
+			try{
+				conn.close();
+			}catch(Exception ignored){}
+		}
+	}
+	
+	
+	public UserDTO getUser(String userID) { //회원정보 받아오는 메소드
+		
+		
+		String sql = "select * from user where user_id=?";
+        UserDTO user = new UserDTO();
+        try {
+    		Class.forName(jdbc_driver);
+    		conn = DriverManager.getConnection(jdbc_url, id, pw);
+
+            pstmt = conn.prepareStatement(sql);
+           
+            pstmt.setString(1, userID);
+            rs = pstmt.executeQuery();
+            rs.next();
+
+           user.setUserID(rs.getString("user_id"));
+           user.setUserPW(rs.getString("user_pwd"));
+           user.setUserName(rs.getString("user_name"));
+           user.setUser_address(rs.getString("user_address"));
+           user.setUser_phone(rs.getString("user_phonenum"));
+           user.setUser_email(rs.getString("user_email"));
+            
+            rs.close();
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return user;
+		
+	}
 }
