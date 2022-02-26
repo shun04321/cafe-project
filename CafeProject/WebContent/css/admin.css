@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.admin_menu-header{
+	  display:flex;
+      justify-content: center;
+}
+
+.menu-insert-form h1{
+	margin-bottom: 50px;
+	display:flex;
+    justify-content: center;
+}
+
+.menu-insert-table{
+	border-collapse: collapse;
+	margin: auto;
+	height: 500px;
+	width: 600px;
+}
+
+.menu-insert-table th,
+.menu-insert-table td{
+	border: 1px solid;
+	padding: 3px 2px 3px;
+}
+
+.menu-insert-table td input{
+	width: 200px;
+	height: 20px;
+}
+
+.menu-insert-table td textarea{
+	height: 150px;
+}
