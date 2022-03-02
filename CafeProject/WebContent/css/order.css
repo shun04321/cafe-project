@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+
+h2{
+	text-align: left;	
+	font-size: 20px;
+}
+
+.hr_1{
+	border: 1px solid black;
+	background-color: black;
+}
+
+.hr_2{
+	border: 1px solid #C4C8CC;
+	background-color: #C4C8CC;
+}
+
+.oder-info-box{
+	margin-top: 80px;
+	width: 55%;
+}
+
+.order-info-table,
+.orderer-info-table,
+.bin-table{
+	width: 100%;
+}
+
+.pay-table{
+	width: 100%;
+	text-align: center;
+}
+
+.order-info-td{
+	 width: 25%;
+	 padding-right: 60px;
+}
+
+.oderer-info-box,
+.pay-box{
+	margin-top: 70px;
+	width: 55%;
+}
+
+.orderer-info-td{
+	width: 35%;
+	padding-left: 10px;
+}
+
+.btn-box{
+	margin-top: 5px;
+	width: 55%; 
+}
+
+.menu{
+		font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif;
+		cursor: pointer;
+		display: inline-block;
+		box-sizing: border-box;
+		padding: 0 11px;
+		font-size: 13px;
+		font-weight: 300;
+		text-decoration: none;
+		vertical-align: middle;
+		letter-spacing: -0.3px;
+		color: #4e4c4a;
+		text-align: center;
+		white-space: nowrap;
+		transition: 0.2s ease-in-out;
+		background-color: transparent;
+		border: 1px solid #eeeeee;
+		height: 40px;
+		line-height: 40px;
+		word-break: keep-all;
+		word-wrap: break-word;
+		margin-left: 6px;
+		width: 100px;
+}
+
+.back{
+	font-family: 'Nunito Sans', 'Noto Sans KR', sans-serif;
+		cursor: pointer;
+		display: inline-block;
+		box-sizing: border-box;
+		padding: 0 11px;
+		border: 1px solid transparent;
+		font-size: 13px;
+		font-weight: 300;
+		text-decoration: none;
+		vertical-align: middle;
+		letter-spacing: -0.3px;
+		text-align: center;
+		white-space: nowrap;
+		transition: 0.2s ease-in-out;
+		color: #ffffff;
+		background-color: #222222;
+		height: 40px;
+		line-height: 40px;
+		word-break: keep-all;
+		word-wrap: break-word;
+		margin-left: 6px;
+		width: 100px;
+}
+
+.order-btn{
+	background-color: rgb(27, 60, 53);
+    border:none;
+    color:white;
+    border-radius: 5px;
+    width: 200px;
+    height: 50px;
+    font-size: 14pt;
+    margin-top: 80px;
+}

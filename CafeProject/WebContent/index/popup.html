@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>카페 영업시간</title>
+</head>
+<style>
+</style>
+<body style="text-align: center;">
+    
+		<h1 style="color: #325446;">NOTICE</h1>
+		<hr><br>
+		<u style="color: #325446; font-weight: bold;">카페 영업시간 안내</u>
+		<br>
+		<h5 style="color: #325446;">평일	   10:00 ~ 21:00</h5>
+		<h5 style="color: #325446;">주말	   10:00 ~ 22:00</h5>
+	
+    <br>
+    <input type="checkbox" id="check" onclick="closePopup();"> <fontsize=3> <b>하루에 한번만 보기</b> </font>
+</body>
+</html>
+<script>
+    function setCookie(name, value, expiredays) {
+        var date = new Date();
+        date.setDate(date.getDate() + expiredays);
+        document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString();
+    }
+
+    function closePopup() {
+        if (document.getElementById("check").value) {
+            setCookie("popupYN", "N", 1);
+            self.close();
+        }
+    }
+</script>
+

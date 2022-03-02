@@ -35,6 +35,7 @@
 }
 
 .welcom-id {
+	text-decoration: none;  /* 2022-02-22 ¼öÁ¤ */
 	color: white;
 	margin-right: 30px;
 }

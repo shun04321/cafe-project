@@ -35,7 +35,7 @@
 		</li>
 				<li class="img-li">
 			<div class="prof">
-				<a href="./../cart/cart.jsp"><img src="./../images/bag.png" id="img"></a><br>  <!-- 수정 요함 -->
+				<a href="./../cart/myCart.jsp"><img src="./../images/bag.png" id="img"></a><br>
 				<h3>장바구니</h3>
 			</div>
 		</li>
